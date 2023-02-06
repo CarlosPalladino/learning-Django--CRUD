@@ -16,10 +16,22 @@
             </li>
             <li>
                 <a href="/tareas">Tareas</a>
+
+            </li>   
+            {% if user.is_authenticated%}
+
+            <li>
+                <a href="/logout">Logout</a>
             </li>
+            {% else %}
             <li>
                 <a href="/login">Login</a>
             </li>
+            <li>
+                <a href="/signin">signin</a>
+            </li>
+            {% endif  %}
+
         </ul>
     </nav>    
     {% block content %}

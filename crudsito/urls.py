@@ -20,7 +20,9 @@ from task import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home,name='home'),
-    path ('login/',views.login, name='login'),
-    path('tareas/',views.tareas, name='tareas')
+    path ('login/',views.register, name='login'),
+    path('tareas/',views.tareas, name='tareas'),
+    path('logout/',views.out, name='logout'),
+    path('signin/',views.signin, name='signin')
 
     ]
