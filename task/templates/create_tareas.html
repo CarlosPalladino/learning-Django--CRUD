@@ -2,8 +2,13 @@
 {% block content %}
 <h1>Crear tarea</h1>
 
-<form action="/tareas/create" method="POST">
-    {{ form}}
-</form>
+<form action="/tareas/create/" method="POST">
 
+    {% csrf_token %}
+    {{ form}}
+
+<button>
+    Save
+</button>
+</form>
 {% endblock %}

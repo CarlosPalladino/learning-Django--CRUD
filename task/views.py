@@ -37,9 +37,19 @@ def tareas(request):
 
 
 def create_tarea(request):
-    return render(request, 'create_tareas.html',{
-        'form': TaskForm
-    })
+    if request.method == 'GET':
+        return render(request, 'create_tareas.html', {
+            'form': TaskForm
+        })
+    else:
+        form = TaskForm(request.POST)
+        new_task = form.save(commit=False)
+        new_task.user = request.user
+        new_task.save() 
+        print(new_task)
+        return render(request, 'tareas.html', {
+            'form': TaskForm
+        })
 
 
 def out(request):
