@@ -1,9 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
 from .form import TaskForm
+from .models import Tareas
 # Create your views here.
 
 
@@ -33,7 +34,15 @@ def register(request):
 
 
 def tareas(request):
-    return render(request, 'tareas.html')
+    tareas = Tareas.objects.filter(user=request.user)
+    return render(request, 'tareas.html', {
+        'tareas': Tareas.objects.filter(user=request.user)
+    })
+
+
+def detail(request,id):
+     tarea =get_object_or_404(Tareas,pk=id)
+     return render (request, 'detail.html',{'tareas': tarea})
 
 
 def create_tarea(request):
@@ -45,7 +54,7 @@ def create_tarea(request):
         form = TaskForm(request.POST)
         new_task = form.save(commit=False)
         new_task.user = request.user
-        new_task.save() 
+        new_task.save()
         print(new_task)
         return render(request, 'tareas.html', {
             'form': TaskForm

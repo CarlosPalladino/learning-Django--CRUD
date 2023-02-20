@@ -3,5 +3,10 @@
 {% block content %}
 
 <h1>tareas</h1>
-
+{% for tareas  in tareas %}
+<li>
+<h1>{{tareas.title}}</h1>
+    <h1>{{tareas.description}}</h1>
+</li>
+{% endfor %}
 {% endblock %}
