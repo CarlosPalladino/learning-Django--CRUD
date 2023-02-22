@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect,get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
@@ -40,9 +40,20 @@ def tareas(request):
     })
 
 
-def detail(request,id):
-     tarea =get_object_or_404(Tareas,pk=id)
-     return render (request, 'detail.html',{'tareas': tarea})
+def detail(request, id):
+    if request.method == 'GET':
+        tarea = get_object_or_404(Tareas, pk=id)
+        form = TaskForm(instance=tarea)
+        return render(request, 'detail.html', {'tareas': tarea, 'form': form})
+    else:
+        try:
+            tarea = get_object_or_404(Tareas, pk=id,user=request.user)
+            form = TaskForm(request.POST, instance=tarea)
+            form.save()
+            return redirect('tareas')
+        except ValueError:
+             return render(request, 'detail.html', {'tareas': tarea, 'form': form
+             'erorr':"error updating task"})
 
 
 def create_tarea(request):
