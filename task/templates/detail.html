@@ -13,9 +13,18 @@
     <button>
         Update
     </button>
-</form> 
+</form>
 
+<form action="{% url 'complete_tarea' 1 %}" method="POST">
+    {% csrf_token %}
 
-<h2>{{tareas.description}}</h2>
+    <button>complete</button>
 
+</form>
+<form action="{% url 'delete_tarea' 1 %}" method="POST">
+    {% csrf_token %}
+
+    <button>Delete</button>
+
+</form>
 {% endblock %}

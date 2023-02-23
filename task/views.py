@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
+from django.utils import timezone
 from .form import TaskForm
 from .models import Tareas
 # Create your views here.
@@ -47,13 +48,27 @@ def detail(request, id):
         return render(request, 'detail.html', {'tareas': tarea, 'form': form})
     else:
         try:
-            tarea = get_object_or_404(Tareas, pk=id,user=request.user)
+            tarea = get_object_or_404(Tareas, pk=id, user=request.user)
             form = TaskForm(request.POST, instance=tarea)
             form.save()
             return redirect('tareas')
         except ValueError:
-             return render(request, 'detail.html', {'tareas': tarea, 'form': form
-             'erorr':"error updating task"})
+            return render(request, 'detail.html', {'tareas': tarea, 'form': form, 'error': "error updating task"})
+
+
+def complete_tarea(request, id):
+    tarea = get_object_or_404(Tareas, pk=id, user=request.user)
+    if request.method == 'POST':
+        tarea.datecompleted = timezone.now()
+        tarea.save()
+        return redirect('home')
+
+
+def delete_tarea(request, id):
+    tarea = get_object_or_404(Tareas, pk=id, user=request.user)
+    if method == 'POST':
+        tarea.delete()
+        return redirect('home')
 
 
 def create_tarea(request):
