@@ -8,5 +8,6 @@
 <h1>{{tareas.title}}</h1>
     <h2>{{tareas.description}}</h2>
 </li>
+<h2> {{tareas.datecompleted | date:'D.M.Y'}}</h2>
 {% endfor %}
 {% endblock %}

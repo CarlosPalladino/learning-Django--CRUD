@@ -41,6 +41,11 @@ def tareas(request):
     })
 
 
+def tareas_completed(request):
+    tareas = Tareas.objects.filter(user=request.user).order_by('-datecompleted')
+    return render(request, 'tareas.html', {'tareas': tareas})
+
+
 def detail(request, id):
     if request.method == 'GET':
         tarea = get_object_or_404(Tareas, pk=id)

@@ -22,10 +22,11 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('login/', views.register, name='login'),
     path('tareas/', views.tareas, name='tareas'),
+    path('tareas/completed/',views.tareas_completed,name='tareas_completed'),
     path('tareas/create/', views.create_tarea, name='create_tareas'),
     path('tareas/<int:id>/', views.detail, name='tareas_detail'),
     path('tareas/<int:id>/complete', views.complete_tarea, name='complete_tarea'),
-    path('tareas/<int:id>/complete', views.delete_tarea, name='delete_tarea'),
+    path('tareas/<int:id>/delete', views.delete_tarea, name='delete_tarea'),
     path('logout/', views.out, name='logout'),
     path('signin/', views.signin, name='signin'),
 
