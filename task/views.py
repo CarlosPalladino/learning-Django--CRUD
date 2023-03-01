@@ -47,14 +47,14 @@ def tareas_completed(request):
     return render(request, 'tareas.html', {'tareas': tareas})
 
 @login_required
-def detail(request, id):
+def detail(request, tarea_id):
     if request.method == 'GET':
-        tarea = get_object_or_404(Tareas, pk=id)
+        tarea = get_object_or_404(Tareas, pk=tarea_id)
         form = TaskForm(instance=tarea)
         return render(request, 'detail.html', {'tareas': tarea, 'form': form})
     else:
         try:
-            tarea = get_object_or_404(Tareas, pk=id, user=request.user)
+            tarea = get_object_or_404(Tareas, pk=tarea_id, user=request.user)
             form = TaskForm(request.POST, instance=tarea)
             form.save()
             return redirect('tareas')

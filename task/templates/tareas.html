@@ -3,9 +3,11 @@
 {% block content %}
 
 <h1>tareas Pendientes</h1>
-{% for tareas  in tareas %}
+{% for tareas in tareas %}
 <li>
-<h1>{{tareas.title}}</h1>
+    <a href="{% url 'detalle_tarea' tarea.id %}">
+        {{tareas.title}}
+    </a>
     <h2>{{tareas.description}}</h2>
 </li>
 <h2> {{tareas.datecompleted | date:'D.M.Y'}}</h2>
