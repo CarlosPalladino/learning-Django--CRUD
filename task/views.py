@@ -34,6 +34,7 @@ def register(request):
                     'error': 'username already exists'
                 })
 
+
 @login_required
 def tareas(request):
     tareas = Tareas.objects.filter(user=request.user)
@@ -41,25 +42,29 @@ def tareas(request):
         'tareas': Tareas.objects.filter(user=request.user)
     })
 
-@login_required
-def tareas_completed(request):
-    tareas = Tareas.objects.filter(user=request.user).order_by('-datecompleted')
-    return render(request, 'tareas.html', {'tareas': tareas})
 
 @login_required
-def detail(request, tarea_id):
+def tareas_completed(request):
+    tareas = Tareas.objects.filter(
+        user=request.user).order_by('-datecompleted')
+    return render(request, 'tareas.html', {'tareas': tareas})
+
+
+@login_required
+def detail(request, id):
     if request.method == 'GET':
-        tarea = get_object_or_404(Tareas, pk=tarea_id)
+        tarea = get_object_or_404(Tareas, pk=id)
         form = TaskForm(instance=tarea)
         return render(request, 'detail.html', {'tareas': tarea, 'form': form})
     else:
         try:
-            tarea = get_object_or_404(Tareas, pk=tarea_id, user=request.user)
+            tarea = get_object_or_404(Tareas, pk=id, user=request.user)
             form = TaskForm(request.POST, instance=tarea)
             form.save()
             return redirect('tareas')
         except ValueError:
             return render(request, 'detail.html', {'tareas': tarea, 'form': form, 'error': "error updating task"})
+
 
 @login_required
 def complete_tarea(request, id):
@@ -91,6 +96,7 @@ def create_tarea(request):
         return render(request, 'tareas.html', {
             'form': TaskForm
         })
+
 
 @login_required
 def out(request):

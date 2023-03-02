@@ -5,7 +5,6 @@
 <h1>tareas Pendientes</h1>
 {% for tareas in tareas %}
 <li>
-    <a href="{% url 'detalle_tarea' tarea.id %}">
         {{tareas.title}}
     </a>
     <h2>{{tareas.description}}</h2>
