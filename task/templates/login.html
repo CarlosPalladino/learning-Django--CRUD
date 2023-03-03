@@ -4,7 +4,7 @@
 <main class="container">
     <div class="row">
         <div class="col-md-4 offset-md-4 mt-5 ">
-            <form  method="POST" class="card card-body ">
+            <form method="POST" class="card card-body ">
                 <h1 class="text-center">Login</h1>
                 {{error}}
                 {% csrf_token %}
@@ -17,15 +17,15 @@
                 <div class="mb-3">
                     <label for="password">password:</label>
                     <input type="password" name="password1" id="password1" class="form-control"
-                    placeholder="write your password">
+                        placeholder="write your password">
                 </div>
                 <div class="mb-3">
                     <label for="password2">confirm your password:</label>
                     <input type="password" name="password2" id="password2" class="form-control"
-                    placeholder="confirm your password">
+                        placeholder="confirm your password">
                 </div>
                 <button type="submit" class="btn btn-primary">
-                    Ingresá
+                    Login
                 </button>
             </form>
         </div>
