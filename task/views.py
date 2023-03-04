@@ -53,9 +53,10 @@ def tareas_completed(request):
 @login_required
 def detail(request, id):
     if request.method == 'GET':
+        user =  Tareas.objects.filter(user=request.user)
         tarea = get_object_or_404(Tareas, pk=id)
         form = TaskForm(instance=tarea)
-        return render(request, 'detail.html', {'tareas': tarea, 'form': form})
+        return render(request, 'detail.html', {'tareas': tarea, 'form': form,'user': user})
     else:
         try:
             tarea = get_object_or_404(Tareas, pk=id, user=request.user)

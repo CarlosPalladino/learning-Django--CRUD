@@ -1,30 +1,40 @@
 {% extends 'base.html'%}
 
 {% block content %}
-<h1>Detalle de tareas</h1>
+<main class="container">
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <h1>Detalle de tareas</h1>
 
 
-<h1>{{tareas.title}}</h1>
-{{error}}
-<form method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
+            <h1>{{tareas.title}}</h1>
+            {{error}}
+            <div class=" justify-content-between">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{form.as_p}}
 
-    <button>
-        Update
-    </button>
-</form>
+                    <button class="btn btn-primary">
+                        Update
+                    </button>
+                </form>
 
-<form action="{% url 'complete_tarea' 1 %}" method="POST">
-    {% csrf_token %}
+                <form action="{% url 'complete_tarea' 1 %}" method="POST">
+                    {% csrf_token %}
 
-    <button>complete</button>
+                    <button class="btn btn-secondary">
+                        complete
+                    </button>
 
-</form>
-<form action="{% url 'delete_tarea' 1 %}" method="POST">
-    {% csrf_token %}
+                </form>
+                <form action="{% url 'delete_tarea' 1 %}" method="POST">
+                    {% csrf_token %}
 
-    <button>Delete</button>
+                    <button class="btn btn-danger">Delete</button>
 
-</form>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
 {% endblock %}

@@ -32,16 +32,18 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="/logout">Logout</a>
                     </li class="nav-item">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/tareas/create">Crear tarea</a>
+                    </li>
                     {% else %}
                     <li class="nav-item">
                         <a class="nav-link active" class="nav-link active" href="/login">Login</a>
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link active" href="/signin">signin</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/tareas/create/">Crear tarea</a>
-                    </li>
+
 
 
                     {% endif %}
@@ -77,9 +79,9 @@
 
         </ul>
     </nav> -->
-    {% block content %}
+        {% block content %}
 
-    {% endblock %}
+        {% endblock %}
 </body>
 
 </html>
