@@ -17,6 +17,7 @@
                         <h1 class="fw-bold text-warning ">{{tareas.title}}</h1>
                         {% endif %}
                         <p> {{tareas.user.username}}</p>
+                        <p>{{tareas.datecompleted|date:'M j y:i'}}</p>
                     </header>
                     <h2>                    {{tareas.description}}
                     </h2>

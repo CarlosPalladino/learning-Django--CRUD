@@ -46,8 +46,8 @@ def tareas(request):
 @login_required
 def tareas_completed(request):
     tareas = Tareas.objects.filter(
-        user=request.user).order_by('-datecompleted')
-    return render(request, 'tareas.html', {'tareas': tareas})
+        user=request.user ).order_by('-datecompleted')
+    return render(request, 'tareas_completed.html', {'tareas': tareas})
 
 
 @login_required

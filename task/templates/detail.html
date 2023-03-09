@@ -19,7 +19,7 @@
                     </button>
                 </form>
 
-                <form action="{% url 'complete_tarea' 1 %}" method="POST">
+                <form action="{% url 'complete_tarea' tareas.id %}" method="POST">
                     {% csrf_token %}
 
                     <button class="btn btn-secondary">
@@ -27,7 +27,7 @@
                     </button>
 
                 </form>
-                <form action="{% url 'delete_tarea' 1 %}" method="POST">
+                <form action="{% url 'delete_tarea' tareas.id %}" method="POST">
                     {% csrf_token %}
 
                     <button class="btn btn-danger">Delete</button>
