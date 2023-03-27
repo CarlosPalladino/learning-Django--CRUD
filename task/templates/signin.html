@@ -4,19 +4,19 @@
     <div class="row">
         <div class="col-md-4 offset-md-4 mt-5">
             <form action="/tareas/" method="POST" class="card card-body ">
-                <h1  class="text-center">Ingresar</h1>
+                <h1  class="text-center">Ingresa</h1>
                 {% csrf_token %}
 
                 <div class="mb-3">
-                    <label for="usernae">username:</label>
+                    <label for="usernae">Usuario:</label>
                     <input type="text" name="username" id="username" class="form-control"
-                        placeholder="write your username">
+                        placeholder="Escribir Usuario">
 
                 </div>
                 <div class="mb-3">
-                    <label for="passwordz">password:</label>
+                    <label for="passwordz">Contraseña:</label>
                     <input type="password" name="password1" id="password1" class="form-control"
-                        placeholder="write your password">
+                        placeholder="Escribir contraseña">
                     </div>
                   
                     <button type="submit" class="btn btn-primary">
